@@ -1,0 +1,14 @@
+group 'com.countrydata'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.hibernate:hibernate-core:5.1.0.Final'
+    compile 'javax.transaction:transaction-api:1.1'
+    compile 'com.h2database:h2:1.4.191'
+}
