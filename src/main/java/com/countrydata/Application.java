@@ -71,13 +71,16 @@ public class Application {
 //                    deleteCountry();
 //                    enter();
 //                    break;
+                case 8:
+                    System.out.println("Please come again!");
+                    factory.close();
+                    break;
                 default:
                     System.out.println("Please enter a valid choice.");
                     enter();
                     break;
             }
         } while(choice != 8);
-        factory.close();
     }
 
     @SuppressWarnings("unchecked")
