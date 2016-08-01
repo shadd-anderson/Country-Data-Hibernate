@@ -5,21 +5,64 @@ import javax.persistence.*;
 @Entity
 public class Country {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String code;
-
     @Column
     private String name;
     @Column
-    private Number internetUsers;
+    private Double internetUsers;
     @Column
-    private Number adultLiteracyRate;
+    private Double adultLiteracyRate;
 
     public Country() {}
 
+    public Country(CountryBuilder builder) {
+        this.code = builder.code;
+        this.name = builder.name;
+        this.internetUsers = builder.internetUsers;
+        this.adultLiteracyRate = builder.adultLiteracyRate;
+    }
+
+    public static class CountryBuilder {
+        private String code;
+        private String name;
+        private Double internetUsers;
+        private Double adultLiteracyRate;
+
+        public CountryBuilder(String name, String code) {
+            this.name = name;
+            this.code = code;
+        }
+
+        public CountryBuilder withInternetUsers(Double users) {
+            internetUsers = users;
+            return this;
+        }
+
+        public CountryBuilder withLiteracyRate(Double literacyRate) {
+            adultLiteracyRate = literacyRate;
+            return this;
+        }
+
+        public Country build() {
+            return new Country(this);
+        }
+    }
+
     @Override
     public String toString() {
-        return String.format("%-32s%20.8f%20.8f",name,(Double)internetUsers,(Double)adultLiteracyRate);
+        String users;
+        String literacy;
+        if(internetUsers == null) {
+            users = "--";
+        } else {
+            users = internetUsers.toString();
+        }
+        if(adultLiteracyRate == null) {
+            literacy = "--";
+        } else {
+            literacy = adultLiteracyRate.toString();
+        }
+        return String.format("%-32s %-3s%20s%20s",name,code,users,literacy);
     }
 
     public String getCode() {
@@ -38,19 +81,19 @@ public class Country {
         this.name = name;
     }
 
-    public double getInternetUsers() {
-        return (double)internetUsers;
+    public Double getInternetUsers() {
+        return internetUsers;
     }
 
-    public void setInternetUsers(double internetUsers) {
+    public void setInternetUsers(Double internetUsers) {
         this.internetUsers = internetUsers;
     }
 
-    public double getAdultLiteracyRate() {
-        return (double)adultLiteracyRate;
+    public Double getAdultLiteracyRate() {
+        return adultLiteracyRate;
     }
 
-    public void setAdultLiteracyRate(double adultLiteractyRate) {
+    public void setAdultLiteracyRate(Double adultLiteractyRate) {
         this.adultLiteracyRate = adultLiteractyRate;
     }
 }

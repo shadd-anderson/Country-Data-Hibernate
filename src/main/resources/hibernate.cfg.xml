@@ -4,7 +4,7 @@
         <property name="connection.url">jdbc:h2:./data/worldbank</property>
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="hbm2ddl.auto">update</property>
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <property name="connection.username">sa</property>
         <mapping class="com.countrydata.model.Country"/>
     </session-factory>
